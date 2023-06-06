@@ -41,8 +41,11 @@ router.get("/", async (req, res)=>{
     res.json(data);
 });
 
-router.get("/:id", async (req, res)=> {
-    const data = await Patient.findOne({ id: req.params.id });
+router.get("/:_id", async (req, res)=> {
+    const data = await Patient.findOne({ _id: req.params._id })
+    .populate("physicalInformation")
+    .populate("clinicalFindings")
+    .populate("automatedMedicalCoding");
     res.json(data);
 });
 

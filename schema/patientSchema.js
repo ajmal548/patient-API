@@ -13,10 +13,10 @@ var patientSchema = mongoose.Schema({
     assignee: String,
     condition: String,
     imgUrl: String,
-    physicalInformation: Object,
-    clinicalFindings: Object,
+    physicalInformation: { type: mongoose.Schema.Types.ObjectId, ref: 'physician' },
+    clinicalFindings: { type: mongoose.Schema.Types.ObjectId, ref: 'clinical' },
     treatmentInformation: Array,
-    automatedMedicalCoding: Object,
+    automatedMedicalCoding: { type: mongoose.Schema.Types.ObjectId, ref: 'AMD' },
     treatmentCompliance: Object
 });
 var patient = mongoose.model("patient", patientSchema, "patients");
